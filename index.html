@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Security - 대기고등학교 정보보안 프로젝트</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #667eea;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Project Structure */
+        .project-structure {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .project-structure pre {
+            color: #ecf0f1;
+            line-height: 1.5;
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Image Placeholders */
+        .demo-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .github-link {
+            display: inline-block;
+            background: #333;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .github-link:hover {
+            background: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .feature-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .feature-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">🛡️ MCP Security</div>
+            <ul class="nav-links">
+                <li><a href="#features">기능</a></li>
+                <li><a href="#structure">구조</a></li>
+                <li><a href="#demo">시연</a></li>
+                <li><a href="#github">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>MCP Security</h1>
+            <p>오픈소스 MCP를 활용한 차세대 보안 취약점 점검 시스템</p>
+            <p>대기고등학교 정보보안 프로젝트</p>
+            <a href="#features" class="cta-button">프로젝트 둘러보기</a>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section id="features" class="section">
+            <div class="container">
+                <h2>🔍 핵심 기능</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🖥️</div>
+                        <h3>시스템 보안 점검</h3>
+                        <p>레지스트리 검사, 악성 프로그램 탐지, 개인정보 유출 위험 점검을 통해 컴퓨터 내부 보안을 종합적으로 분석합니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>전체 보안 점검</h3>
+                        <p>시스템 업데이트 상태, 방화벽 설정, 백신 및 보안 소프트웨어 상태를 실시간으로 모니터링합니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>브라우저 보안 점검</h3>
+                        <p>브라우저 보안 설정, 확장 프로그램, 자동 실행 프로그램을 분석하여 웹 브라우징 환경을 안전하게 보호합니다.</p>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">주요 점검 영역</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">오픈소스</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">AI</span>
+                        <span class="stat-label">지원 분석</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="structure" class="section">
+            <div class="container">
+                <h2>📁 프로젝트 구조</h2>
+                <div class="project-structure">
+                    <pre>
+project
+├── 레지스트리_보안_점검
+│   ├── README.md
+│   ├── project1.py
+│   ├── project2.py
+│   └── project3.py
+├── 시스템_보안_점검
+│   ├── README.md
+│   └── project1.py
+└── 브라우저_보안_점검
+    ├── README.md
+    ├── project1.py
+    ├── project2.py
+    └── project3.py
+                    </pre>
+                </div>
+                <p style="text-align: center; margin-top: 2rem; color: #666;">
+                    각 모듈은 독립적으로 실행 가능하며, 상세한 사용법은 각 폴더의 README.md 파일에서 확인할 수 있습니다.
+                </p>
+            </div>
+        </section>
+
+        <section id="demo" class="section">
+            <div class="container">
+                <h2>🎥 프로젝트 시연</h2>
+                <img src="https://picsum.photos/800/400?random=1" alt="프로젝트 시연 스크린샷" class="demo-image">
+                <p style="text-align: center; margin-top: 2rem; color: #666; font-size: 1.1rem;">
+                    실제 사용자가 컴퓨터 지식 없이도 간편하게 보안 점검을 수행하고,<br>
+                    AI가 제시하는 맞춤형 해결책을 확인할 수 있습니다.
+                </p>
+                
+                <div style="margin-top: 3rem;">
+                    <h3 style="text-align: center; margin-bottom: 2rem; color: #2c3e50;">🌟 기대 효과</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">👥</div>
+                            <h3>개인 사용자</h3>
+                            <p>복잡한 보안 지식 없이도 전문가 수준의 보안 점검이 가능하며, AI의 도움으로 명확한 해결 방법을 제공받을 수 있습니다.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🏢</div>
+                            <h3>사회적 의의</h3>
+                            <p>사이버 보안 인식 향상과 중소기업·개인도 전문가 수준의 보안 점검을 받을 수 있는 환경을 조성합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+            <div class="container">
+                <h2 style="color: white;">🚀 향후 발전 계획</h2>
+                <div class="features-grid">
+                    <div class="feature-card" style="background: rgba(255,255,255,0.1); border-left: 4px solid white;">
+                        <h3 style="color: white;">📱 모바일 확장</h3>
+                        <p style="color: rgba(255,255,255,0.9);">모바일 기기 보안 점검 기능으로 스마트폰과 태블릿까지 보호 범위를 확대합니다.</p>
+                    </div>
+                    <div class="feature-card" style="background: rgba(255,255,255,0.1); border-left: 4px solid white;">
+                        <h3 style="color: white;">🏭 기업용 솔루션</h3>
+                        <p style="color: rgba(255,255,255,0.9);">기업용 네트워크 보안 점검 기능을 개발하여 더 큰 규모의 보안 관리를 지원합니다.</p>
+                    </div>
+                    <div class="feature-card" style="background: rgba(255,255,255,0.1); border-left: 4px solid white;">
+                        <h3 style="color: white;">⚡ 실시간 모니터링</h3>
+                        <p style="color: rgba(255,255,255,0.9);">실시간 보안 모니터링 기능으로 24시간 지속적인 보안 상태 관리를 제공합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="github">
+        <div class="container">
+            <h3>🔗 소스코드 및 자료</h3>
+            <p>오픈소스 프로젝트로 누구나 자유롭게 사용하고 기여할 수 있습니다.</p>
+            <a href="https://github.com/mcpsecurity/mcpsecurity" class="github-link" target="_blank">
+                📂 GitHub 저장소 방문하기
+            </a>
+            <p style="margin-top: 2rem; opacity: 0.8;">
+                © 2024 대기고등학교 정보보안 프로젝트 | MCP Security
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 부드러운 스크롤
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 스크롤 애니메이션
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // 애니메이션 타겟 요소들을 관찰
+        document.querySelectorAll('.feature-card, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
